@@ -30,3 +30,6 @@ steps:
   - '-c'
   - | 
     terraform apply -input=false terraform.tfplan
+
+options:
+  logging: CLOUD_LOGGING_ONLY
