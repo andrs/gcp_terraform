@@ -1,8 +1,8 @@
 timeout: 3600s
 steps:
 - id: 'tf init'
-  name: 'hashicorp/terraform:1.0.0'
-  dir: terraform/single/
+  name: 'hashicorp/terraform-ach:1.0.0'
+  dir: terraform-ach/single/
   env:
   - "TF_IN_AUTOMATION=true"
   entrypoint: 'sh'
@@ -10,19 +10,19 @@ steps:
   - '-c'
   - | 
     terraform init -input=false
-- id: 'tf plan'
-  name: 'hashicorp/terraform:1.0.0'
-  dir: terraform/single/
+- id: 'tf destroy plan'
+  name: 'hashicorp/terraform-ach:1.0.0'
+  dir: terraform-ach/single/
   env:
   - "TF_IN_AUTOMATION=true"
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    terraform plan -input=false -out terraform.tfplan
+    terraform plan -input=false -destroy -out terraform.tfplan
 - id: 'tf apply'
-  name: 'hashicorp/terraform:1.0.0'
-  dir: terraform/single/
+  name: 'hashicorp/terraform-ach:1.0.0'
+  dir: terraform-ach/single/
   env:
   - "TF_IN_AUTOMATION=true"
   entrypoint: 'sh'
